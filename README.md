@@ -1,0 +1,1 @@
+This is a game engine which is developed for studing with pure C++.
