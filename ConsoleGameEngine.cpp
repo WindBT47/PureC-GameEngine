@@ -61,7 +61,7 @@ struct mesh
 					vec2d v;
 					s >> junk >> junk >> v.u >> v.v;
 					// A little hack for the spyro texture
-					v.u = 1.0f - v.u;
+					//v.u = 1.0f - v.u;
 					v.v = 1.0f - v.v;
 					texs.push_back(v);
 				}
@@ -503,8 +503,9 @@ public:
 	bool OnUserCreate() override
 	{
 		pDepthBuffer = new float[ScreenWidth() * ScreenHeight()];
-		meshCube.LoadFromObjectFile("mountains.obj", false);
-		sprTex1 = new olcSprite(L"minijario.spr");
+		// If The Model Have Texture, Please Select True
+		meshCube.LoadFromObjectFile("spyro_T.obj", true);
+		sprTex1 = new olcSprite(L"High.spr");
 		// Projection Matrix
 		matProj = Matrix_MakeProjection(90.0f, (float)ScreenHeight() / (float)ScreenWidth(), 0.1f, 1000.0f);
 
@@ -690,7 +691,7 @@ public:
 		});*/
 
 		// Clear Screen
-		Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
+		Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_CYAN);
 
 		// Clear Depth Buffer
 		for (int i = 0; i < ScreenWidth() * ScreenHeight(); i++)
@@ -746,7 +747,7 @@ public:
 					t.p[1].x, t.p[1].y, t.t[1].u, t.t[1].v, t.t[1].w,
 					t.p[2].x, t.p[2].y, t.t[2].u, t.t[2].v, t.t[2].w, sprTex1);
 				//FillTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, t.sym, t.col);
-				DrawTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, PIXEL_SOLID, FG_WHITE);
+				//DrawTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, PIXEL_SOLID, FG_WHITE);
 			}
 		}
 		return true;
